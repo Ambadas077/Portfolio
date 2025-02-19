@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+
+    <title>Ambadas | Frontend Developer</title>
+
+    <style>
+        
+        body {
+            background-color: #111;
+            color: white;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        
+        body.light-mode {
+            background-color: #f0f0f0;
+            color: #111;
+        }
+
+     
+        header,
+        footer {
+            background-color: #111;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            transition: background-color 0.3s;
+        }
+
+        body.light-mode header,
+        body.light-mode footer {
+            background-color: #fff;
+            color: #111;
+        }
+
+        header a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        body.light-mode header a {
+            color: #111;
+        }
+
+        footer .footer__copy {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 20px;
+        }
+
+        footer .footer__social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        footer .footer__social-item {
+            font-size: 1.5rem;
+        }
+
+      
+        .nav__logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ff6347;
+        }
+
+        .nav__menu {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .nav__menu a {
+            text-decoration: none;
+            color: white;
+            transition: color 0.3s ease;
+        }
+
+        .nav__menu a:hover {
+            color: #ff6347;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+    
+        .home {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('https://images.pexels.com/photos/6964371/pexels-photo-6964371.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load') no-repeat center center;
+            background-size: cover;
+            position: relative;
+        }
+
+        .home__container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 2rem;
+            padding: 2rem;
+            z-index: 10;
+        }
+
+        .home__data {
+            max-width: 500px;
+            padding: 2rem;
+            text-align: left;
+        }
+
+        .home__data h1 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1rem;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .home__data p {
+            font-size: 1.5rem;
+            color: #ff6347;
+            animation: fadeIn 2s ease-out 0.5s;
+        }
+
+        .home__buttons {
+            margin-top: 20px;
+            animation: fadeIn 2s ease-out 1s;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #ff6347;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+            box-shadow: 0 5px 15px rgba(255, 99, 71, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #ff4500;
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .about {
+            margin-top: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            animation: fadeIn 2s ease-out 3s;
+        }
+
+        .about__info {
+            max-width: 500px;
+            padding: 2rem;
+            text-align: left;
+            flex: 1;
+            perspective: 1000px; 
+        }
+
+        .about__card {
+            background-color: #222;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .about__card:hover {
+            transform: rotateY(10deg) rotateX(10deg);
+        }
+
+        .about__info h2 {
+            font-size: 2.5rem;
+            color: #ff6347;
+            margin-bottom: 1rem;
+        }
+
+        .about__info p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        .education__info {
+            margin-top: 20px;
+        }
+
+        .education__card {
+            background-color: #333;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+            margin-top: 10px;
+        }
+
+        .education__card:hover {
+            transform: rotateY(10deg) rotateX(10deg);
+        }
+
+        .education__detail {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+       
+        .skills {
+            margin-top: 100px;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .skills__header {
+            font-size: 2rem;
+            color: #ff6347;
+            margin-bottom: 2rem;
+        }
+
+        .skills__list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .skills__item {
+            background-color: #222;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            perspective: 1000px; 
+        }
+
+        .skills__item:hover {
+            transform: rotateY(10deg) rotateX(10deg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .skills__icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .skills__name {
+            font-size: 1.2rem;
+        }
+
+      
+        .projects {
+            margin-top: 100px;
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .projects__header {
+            font-size: 2rem;
+            color: #ff6347;
+            margin-bottom: 2rem;
+        }
+
+        .projects__list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .project__item {
+            background-color: #222;
+            padding: 2rem;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            perspective: 1000px; 
+        }
+
+        .project__item:hover {
+            transform: rotateY(10deg) rotateX(10deg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .project__image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .project__overlay {
+            margin-top: 10px;
+        }
+
+        .project__title {
+            font-size: 1.2rem;
+            color: #ff6347;
+        }
+
+        .project__description {
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        
+        .contact {
+            margin-top: 100px;
+            padding: 3rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact__card {
+            background-color: #222;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .contact__card:hover {
+            transform: rotateY(10deg) rotateX(10deg);
+        }
+
+        .contact__title {
+            font-size: 2rem;
+            color: #ff6347;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .contact__form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact__input,
+        .contact__textarea {
+            padding: 1rem;
+            background-color: #333;
+            color: white;
+            border: 1px solid #444;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        body.light-mode .contact__input,
+        body.light-mode .contact__textarea {
+            background-color: #fff;
+            color: #111;
+            border: 1px solid #ccc;
+        }
+
+        .contact__input:focus,
+        .contact__textarea:focus {
+            background-color: #555;
+            transform: scale(1.05);
+        }
+
+        .contact__button {
+            padding: 1rem;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        body.light-mode .contact__button {
+            background-color: #ff4500;
+        }
+
+        .contact__button:hover {
+            background-color: #ff4500;
+        }
+
+      
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        .scroll-to-top:hover {
+            background-color: #ff4500;
+        }
+
+        @media (max-width: 768px) {
+            .nav__menu {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .skills__list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .project__item {
+                width: 90%;
+            }
+        }
+
+        
+        .theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-switcher:hover {
+            background-color: #ff4500;
+        }
+    </style>
+</head>
+
+<body>
+
+  
+    <header>
+        <div>
+            <a href="#home" class="nav__logo">Ambadas</a>
+            <div class="nav__menu">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="home" id="home">
+        <div class="home__container">
+            <div class="home__data">
+                <h1>Hi, I'm Ambadas</h1>
+                <p>Full Stack Developer</p>
+                <div class="home__buttons">
+                    <a href="#contact" class="button">Contact Me</a>
+                    <a href="#projects" class="button">My Projects</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about__info">
+            <h2>About Me</h2>
+            <div class="about__card">
+                <p>I'm a passionate Full Stack Developer, always learning and exploring new technologies to build user-friendly and efficient web applications.</p>
+
+               
+                <div class="education__info">
+                    <h3>Education</h3>
+                    <div class="education__card">
+                        <p>I graduated from <strong>Visvesvaraya Technological University</strong> with a degree in <strong>Computer Science</strong> in 2023.</p>
+                        <div class="education__detail">CGPA: <span style="color: #ff6347;">7.5</span></div>
+                        <div class="education__detail">Location: <span style="color: #ff6347;">Bangalore, India</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+ 
+    <section class="skills" id="skills">
+        <div class="skills__header">Skills</div>
+        <div class="skills__list">
+            <div class="skills__item">
+                <div class="skills__icon">
+                    <i class="bx bxl-html5"></i>
+                </div>
+                <div class="skills__name">HTML</div>
+                <div class="progress">
+                    <div class="progress__fill" style="width: 90%;"></div>
+                </div>
+            </div>
+            <div class="skills__item">
+                <div class="skills__icon">
+                    <i class="bx bxl-css3"></i>
+                </div>
+                <div class="skills__name">CSS</div>
+                <div class="progress">
+                    <div class="progress__fill" style="width: 85%;"></div>
+                </div>
+            </div>
+            <div class="skills__item">
+                <div class="skills__icon">
+                    <i class="bx bxl-javascript"></i>
+                </div>
+                <div class="skills__name">JavaScript</div>
+                <div class="progress">
+                    <div class="progress__fill" style="width: 80%;"></div>
+                </div>
+            </div>
+            <div class="skills__item">
+                <div class="skills__icon">
+                    <i class="bx bxl-python"></i>
+                </div>
+                <div class="skills__name">Python</div>
+                <div class="progress">
+                    <div class="progress__fill" style="width: 70%;"></div>
+                </div>
+            </div>
+            <div class="skills__item">
+                <div class="skills__icon">
+                    <i class="bx bxl-bootstrap"></i>
+                </div>
+                <div class="skills__name">Bootstrap</div>
+                <div class="progress">
+                    <div class="progress__fill" style="width: 75%;"></div>
+                </div>
+            </div>
+            <div class="skills__item">
+                <div class="skills__icon">
+                    <i class="bx bxl-java"></i>
+                </div>
+                <div class="skills__name">Hibernate</div>
+                <div class="progress">
+                    <div class="progress__fill" style="width: 65%;"></div>
+                </div>
+            </div>
+            <div class="skills__item">
+                <div class="skills__icon">
+                    <i class="bx bxl-react"></i>
+                </div>
+                <div class="skills__name">React</div>
+                <div class="progress">
+                    <div class="progress__fill" style="width: 75%;"></div>
+                </div>
+            </div>
+            <div class="skills__item">
+                <div class="skills__icon">
+                    <i class="bx bxl-nodejs"></i>
+                </div>
+                <div class="skills__name">Node.js</div>
+                <div class="progress">
+                    <div class="progress__fill" style="width: 70%;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section class="projects" id="projects">
+        <div class="projects__header">My Projects</div>
+        <div class="projects__list">
+            <div class="project__item">
+                <div class="project__image">
+                    <img src="https://designnotes.blog.gov.uk/wp-content/uploads/sites/53/2020/06/Portfolio-Desk.jpg" alt="Project 1" />
+                </div>
+                <div class="project__overlay">
+                    <div class="project__title">Portfolio Website</div>
+                    <div class="project__description">A personal website showcasing my work and skills. <a href="https://your-portfolio-link.com" target="_blank" style="color: #ff6347;">View Project</a></div>
+                </div>
+            </div>
+            <div class="project__item">
+                <div class="project__image">
+                    <img src="https://mediaindia.eu/wp-content/uploads/2017/07/Ecommerce-BTL.jpg" alt="Project 2" />
+                </div>
+                <div class="project__overlay">
+                    <div class="project__title">E-commerce Website</div>
+                    <div class="project__description">An online store built with React and Firebase. <a href="https://your-ecommerce-link.com" target="_blank" style="color: #ff6347;">View Project</a></div>
+                </div>
+            </div>
+            <div class="project__item">
+                <div class="project__image">
+                    <img src="https://static-00.iconduck.com/assets.00/web-developer-illustration-2048x1490-saofs07x.png" alt="Project 3" />
+                </div>
+                <div class="project__overlay">
+                    <div class="project__title">Gold Price Prediction</div>
+                    <div class="project__description">Forecasting Gold Price. <a href="https://your-task-manager-link.com" target="_blank" style="color: #ff6347;">View Project</a></div>
+                </div>
+            </div>
+            <div class="project__item">
+                <div class="project__image">
+                    <img src="https://wallpaperaccess.com/full/2525117.jpg" alt="Project 4" />
+                </div>
+                <div class="project__overlay">
+                    <div class="project__title">Blog Platform</div>
+                    <div class="project__description">A simple blog platform built with React and Express.js. <a href="https://your-blog-platform-link.com" target="_blank" style="color: #ff6347;">View Project</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact" id="contact">
+        <div class="contact__card">
+            <div class="contact__title">Get in Touch</div>
+            <form class="contact__form">
+                <input type="text" class="contact__input" placeholder="Your Name" required />
+                <input type="email" class="contact__input" placeholder="Your Email" required />
+                <textarea class="contact__textarea" placeholder="Your Message" rows="4" required></textarea>
+                <button type="submit" class="contact__button">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <button class="scroll-to-top" id="scrollToTopBtn" title="Go to top">
+        <i class="bx bxs-up-arrow"></i>
+    </button>
+
+    <!-- THEME SWITCHER BUTTON -->
+    <button class="theme-switcher" id="themeSwitcher" title="Toggle Theme">
+        <i class="bx bx-sun"></i>
+    </button>
+
+    <!-- FOOTER -->
+    <footer>
+        <div>
+            <p class="footer__copy">© 2025 Ambadas. All rights reserved.</p>
+            <div class="footer__social">
+                <a href="#" class="footer__social-item"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="footer__social-item"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="footer__social-item"><i class="bx bxl-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+
+        // Scroll to Top Button
+        const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+        window.onscroll = function () {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        };
+
+        scrollToTopBtn.onclick = function () {
+            document.body.scrollTop = 0; 
+            document.documentElement.scrollTop = 0; 
+        };
+
+        const themeSwitcher = document.getElementById("themeSwitcher");
+        themeSwitcher.onclick = function () {
+            document.body.classList.toggle("light-mode");
+            themeSwitcher.innerHTML = document.body.classList.contains("light-mode") ? '<i class="bx bx-moon"></i>' : '<i class="bx bx-sun"></i>';
+        };
+    </script>
+
+</body>
+
+</html>
